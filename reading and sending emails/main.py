@@ -97,7 +97,7 @@ def checkSchedule_sendQuotes():
 
         # Finding the Index of the Day of Today and on Behalf of it and Extracting Today's Day from the Weeakdays Dictionary
         today_index = datetime.date.today().isoweekday()
-        Today = weekdays[today_index]
+        today_ = weekdays[today_index]
 
         # Reading 'recipients.csv' where All the Recipients of the Motivational-Quotes are Enlisted with the Necessary Details About them i.e. the Name, Email and the Day When to Send the Email to him.
         recipients = pd.read_csv('recipients.csv')
@@ -114,7 +114,7 @@ def checkSchedule_sendQuotes():
             recieve_day = recipient['recieve_day']
 
             # Sending Mail on Behalf of the Condition/Check i.e. if the Day Today is the Same as the Recieve-Day
-            if Today == recieve_day:
+            if today_.lower() == recieve_day.lower():
                 mail_sent = send_mail(email, subject, content)
                 print(f'Successfully send quote via email to {name} at email-address {email}') if mail_sent else print(
                     f'Failed to send quote via email to {name} at email-address {email}')
