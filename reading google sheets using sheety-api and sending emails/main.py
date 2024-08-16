@@ -1,3 +1,5 @@
+# Modules & Packages Import Statements!
+
 # import requests
 import json
 import smtplib
@@ -10,6 +12,9 @@ import os
 # import time
 from datetime import datetime
 from typing import List, Dict
+
+
+# Main Code Starts Here:
 
 load_dotenv()
 
@@ -29,12 +34,14 @@ FROM = 'faisalmujtaba2005@gmail.com'
 
 def fetch_clients_from_sheet(url=None):
     try:
+        # Code to fetch data from google sheet using sheety-api!
+
         # res = requests.get(url)
         # print(res.text)
         # sheet = res.json()
         # return sheet["clients"]
 
-        # To preserve maximum api calls!
+        # Code to preserve maximum api calls of sheety-api!
         file_path = 'C:/Users/Faisal/OneDrive/Desktop/code playground/B.Q_3.0 Advance Python Assignments/reading google sheets using sheety-api and sending emails/sample_sheety_response.json'
 
         with open(file=file_path, mode='r') as file:
@@ -45,6 +52,7 @@ def fetch_clients_from_sheet(url=None):
 
 
 # Failed Experiment!
+
 # def send_whatsapp_message(to_phoneNumber, reciver_name, message):
 #     try:
 #         kit.sendwhatmsg_instantly(to_phoneNumber, message)
@@ -63,8 +71,9 @@ def send_monthly_whatsapp_n_email_messages_to_clients():
     clients: List[Dict[str]] = fetch_clients_from_sheet()
 
     with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
-        # if isinstance(DATE_NOW.day, int) and DATE_NOW.day == 1:
-        if isinstance(DATE_NOW.day, int):
+
+        if isinstance(DATE_NOW.day, int) and DATE_NOW.day == 1:
+
             server.starttls()
             server.login(FROM, PASSWORD)
 
@@ -73,11 +82,15 @@ def send_monthly_whatsapp_n_email_messages_to_clients():
                 client_email = client['email']
                 # client_whatsapp = client['whatsapp']
 
+                # Note:
                 # This method is preferred for its simplicity when you have a fixed and known number of keys to combine in a dictionary. It allows for quick and clear formatting of specific values, such as the sunnah dates!
+
                 # sunnah_dates = f'{client['sunnahDate1']}, {
                 #     client['sunnahDate2']}, {client['sunnahDate3']}'
 
+                # Note:
                 # If you dont actually know how many keys you have to join then this way is best!
+
                 sunnah_dates_list = []
                 for key, value in client.items():
                     if 'sunnahDate' in key:
@@ -86,6 +99,7 @@ def send_monthly_whatsapp_n_email_messages_to_clients():
 
                 if client_email != '':
                     # "alternative" is a MIMEMultipart's subtype that indicates that it can accept both html & text content alternatively
+
                     message = MIMEMultipart("alternative")
 
                     message['Subject'] = SUBJECT
@@ -93,6 +107,7 @@ def send_monthly_whatsapp_n_email_messages_to_clients():
                     message['To'] = client_email
 
                     # The text content is by Chat-GPT!
+
                     TEXT_Content = f"""
                     Hi {client_name},
 
@@ -115,7 +130,8 @@ def send_monthly_whatsapp_n_email_messages_to_clients():
                     """
                     TEXT_Content = MIMEText(TEXT_Content, 'plain')
 
-                    # I write it i.e. html by my self but the text content is from Chat-GPT!
+                    # I write it, The html by my self but the text content is from Chat-GPT!
+
                     HTML_Content = f"""
                     <html lang="en">
                         <body>
