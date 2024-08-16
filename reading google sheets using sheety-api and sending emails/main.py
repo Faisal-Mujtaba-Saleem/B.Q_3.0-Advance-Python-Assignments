@@ -105,6 +105,7 @@ def send_monthly_whatsapp_n_email_messages_to_clients():
                     {CLINIC_NAME}
                     """
 
+                    # I write it by my self but the text content is from Chat-GPT!
                     HTML = f"""
                     <html lang="en">
 
