@@ -3,8 +3,10 @@ import json
 import smtplib
 from email.message import EmailMessage
 # import pywhatkit as kit
+import pyautogui
 from dotenv import load_dotenv
 import os
+import time
 from datetime import datetime
 from typing import List, Dict
 
@@ -45,7 +47,10 @@ def fetch_clients_from_sheet(url):
 # def send_whatsapp_message(to_phoneNumber, reciver_name, message):
 #     try:
 #         kit.sendwhatmsg_instantly(to_phoneNumber, message)
-#         print(f'Failed to send message to, {
+#         time.sleep(20)
+#         pyautogui.press('enter')
+
+#         print(f'Successfully send message to, {
 #               reciver_name} at whatsapp with number {to_phoneNumber}')
 #     except Exception as e:
 #         print(f'Failed to send message to, {
