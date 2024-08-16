@@ -1,12 +1,13 @@
 # import requests
 import json
 import smtplib
-from email.message import EmailMessage
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 # import pywhatkit as kit
-import pyautogui
+# import pyautogui
 from dotenv import load_dotenv
 import os
-import time
+# import time
 from datetime import datetime
 from typing import List, Dict
 
@@ -26,7 +27,7 @@ SUBJECT = 'Cupping Therapy Dates Notification For This Month'
 FROM = 'faisalmujtaba2005@gmail.com'
 
 
-def fetch_clients_from_sheet(url):
+def fetch_clients_from_sheet(url=None):
     try:
         # res = requests.get(url)
         # print(res.text)
@@ -58,38 +59,41 @@ def fetch_clients_from_sheet(url):
 
 
 def send_monthly_whatsapp_n_email_messages_to_clients():
-    clients: List[Dict[str]] = fetch_clients_from_sheet(sheet_url=sheet_url)
+    # clients: List[Dict[str]] = fetch_clients_from_sheet(sheet_url)
+    clients: List[Dict[str]] = fetch_clients_from_sheet()
 
     with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
-        if isinstance(DATE_NOW.day, int) and DATE_NOW.day == 1:
-            # if isinstance(DATE_NOW.day, int):
+        # if isinstance(DATE_NOW.day, int) and DATE_NOW.day == 1:
+        if isinstance(DATE_NOW.day, int):
             server.starttls()
             server.login(FROM, PASSWORD)
 
-            sunnah_dates_list = []
             for client in clients:
                 client_name = client['name']
                 client_email = client['email']
                 # client_whatsapp = client['whatsapp']
 
                 # This method is preferred for its simplicity when you have a fixed and known number of keys to combine in a dictionary. It allows for quick and clear formatting of specific values, such as the sunnah dates!
-                sunnah_dates = f'{client['sunnahDate1']}, {
-                    client['sunnahDate2']}, {client['sunnahDate3']}'
+                # sunnah_dates = f'{client['sunnahDate1']}, {
+                #     client['sunnahDate2']}, {client['sunnahDate3']}'
 
                 # If you dont actually know how many keys you have to join then this way is best!
+                sunnah_dates_list = []
                 for key, value in client.items():
                     if 'sunnahDate' in key:
                         sunnah_dates_list.append(value)
-                sunnah_dates = ', '.join(sunnah_dates)
+                sunnah_dates = ', '.join(sunnah_dates_list)
 
                 if client_email != '':
-                    message = EmailMessage()
+                    # "alternative" is a MIMEMultipart's subtype that indicates that it can accept both html & text content alternatively
+                    message = MIMEMultipart("alternative")
 
                     message['Subject'] = SUBJECT
                     message['From'] = FROM
                     message['To'] = client_email
 
-                    TEXT = f"""
+                    # The text content is by Chat-GPT!
+                    TEXT_Content = f"""
                     Hi {client_name},
 
                     Assalam u Alaikum,
@@ -109,11 +113,11 @@ def send_monthly_whatsapp_n_email_messages_to_clients():
                     Best regards,
                     {CLINIC_NAME}
                     """
+                    TEXT_Content = MIMEText(TEXT_Content, 'plain')
 
-                    # I write it by my self but the text content is from Chat-GPT!
-                    HTML = f"""
+                    # I write it i.e. html by my self but the text content is from Chat-GPT!
+                    HTML_Content = f"""
                     <html lang="en">
-
                         <body>
                             <h1>
                                 <u>
@@ -156,19 +160,19 @@ def send_monthly_whatsapp_n_email_messages_to_clients():
                             please reach
                             out to us at {CONTACT_NUMBER}. We are here to support your health and wellness.
 
-                Thank you for choosing our clinic. We look forward to seeing you soon.
+                            Thank you for choosing our clinic. We look forward to seeing you soon.
                             </p>
 
                             <strong>Best regards,</strong>
                             <br>
                             <i>{CLINIC_NAME}</i>
                         </body>
-
                     </html>
         """
+                    HTML_Content = MIMEText(HTML_Content, 'html')
 
-                    message.set_content(TEXT)
-                    message.add_alternative(HTML)
+                    message.attach(TEXT_Content)
+                    message.attach(HTML_Content)
 
                     server.send_message(msg=message)
 
