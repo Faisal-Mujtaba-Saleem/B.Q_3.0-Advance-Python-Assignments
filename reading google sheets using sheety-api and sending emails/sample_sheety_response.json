@@ -1,0 +1,40 @@
+{
+    "clients": [
+        {
+            "name": "Talha-Saleem",
+            "email": "talhasaleem508@gmail.com",
+            "whatsapp": "92 346 9151505",
+            "sunnahDate1": "21/08/2024",
+            "sunnahDate2": "23/08/2024",
+            "sunnahDate3": "25/08/2024",
+            "id": 2
+        },
+        {
+            "name": "Abdul-Rafey",
+            "email": "upwork8000@gmail.com",
+            "whatsapp": "92  312 0372325",
+            "sunnahDate1": "21/08/2024",
+            "sunnahDate2": "23/08/2024",
+            "sunnahDate3": "25/08/2024",
+            "id": 3
+        },
+        {
+            "name": "Husnain-Arshad",
+            "email": "",
+            "whatsapp": "92 312 1043023",
+            "sunnahDate1": "21/08/2024",
+            "sunnahDate2": "23/08/2024",
+            "sunnahDate3": "25/08/2024",
+            "id": 4
+        },
+        {
+            "name": "Faisal Mujtaba",
+            "email": "faisalmujtaba2005@gmail.com",
+            "whatsapp": "92 3360245402",
+            "sunnahDate1": "21/08/2024",
+            "sunnahDate2": "23/08/2024",
+            "sunnahDate3": "25/08/2024",
+            "id": 5
+        }
+    ]
+}
