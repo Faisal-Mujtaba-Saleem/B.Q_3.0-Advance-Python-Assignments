@@ -75,6 +75,7 @@ def send_monthly_whatsapp_n_email_messages_to_clients():
 
     with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
 
+        # Condition to check that is this is the month's 1st day, If it's the month's 1st day then send emails and (whatsapp messages, if successed) to the clients of tthe clinic
         if isinstance(DATE_NOW.day, int) and DATE_NOW.day == 1:
 
             server.ehlo()
