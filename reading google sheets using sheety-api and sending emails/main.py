@@ -1,20 +1,23 @@
-# Modules & Packages Import Statements!
+# Import Statements:
 
 # import requests
 import json
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-# import pywhatkit as kit
-# import pyautogui
 from dotenv import load_dotenv
 import os
-# import time
 from datetime import datetime
 from typing import List, Dict
 
+# Modules/Packages used in Failed Experiment:
 
-# Main Code Starts Here:
+# import pywhatkit as kit
+# import pyautogui
+# import time
+
+
+# Main Code:
 
 load_dotenv()
 
