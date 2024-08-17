@@ -77,6 +77,7 @@ def send_monthly_whatsapp_n_email_messages_to_clients():
 
         if isinstance(DATE_NOW.day, int) and DATE_NOW.day == 1:
 
+            server.ehlo()
             server.starttls()
             server.login(FROM, PASSWORD)
 
