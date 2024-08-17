@@ -77,6 +77,7 @@ def send_monthly_whatsapp_n_email_messages_to_clients():
 
         # Condition to check that is this is the month's 1st day, If it's the month's 1st day then send emails and (whatsapp messages, if successed) to the clients of tthe clinic
         if isinstance(DATE_NOW.day, int) and DATE_NOW.day == 1:
+
             # Sending EHLO CMD, (Extended Hello CMD) to the SMTP server which means that we are telling to the server that we want create a connection/start a SMTP session and that we the client supports Extended SMTP (ESMTP), which is an enhanced version of the original SMTP protocol.
 
             server.ehlo()
