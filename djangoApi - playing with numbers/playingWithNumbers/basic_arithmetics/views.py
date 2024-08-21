@@ -34,7 +34,7 @@ def average(request):
 
         avg_res = {
             'numbers': nums_to_take_avg,
-            'total': nums_avg
+            'average': nums_avg
         }
 
         return JsonResponse(avg_res)
@@ -54,7 +54,7 @@ def product(request):
 
         product_res = {
             'numbers': nums_to_take_product,
-            'total': nums_product
+            'product': nums_product
         }
 
         return JsonResponse(product_res)
