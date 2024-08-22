@@ -30,7 +30,7 @@ def total(request):
     # returning error if the request is not POST
 
     return JsonResponse({
-        'error': 'POST request required'
+        'error': f'Invalid request-type {request.method}, Expected POST'
     })
 
 
@@ -64,7 +64,7 @@ def average(request):
     # returning error if the request is not POST
 
     return JsonResponse({
-        'error': 'POST request required'
+        'error': f'Invalid request-type {request.method}, Expected POST'
     })
 
 
@@ -99,5 +99,5 @@ def product(request):
     # returning error if the request is not POST
 
     return JsonResponse({
-        'error': 'POST request required'
+        'error': f'Invalid request-type {request.method}, Expected POST'
     })
