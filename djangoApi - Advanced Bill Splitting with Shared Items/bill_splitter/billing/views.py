@@ -117,10 +117,10 @@ def splitWIthSharedItems(request):
         return JsonResponse({'error': f'An error occurred: {e}'}, status=500)
 
 
+# The example input and output is taken from the ChatGPT!
+
 # Example Input:
 '''
-The example input and output is taken from the ChatGPT
-
 {
     "user_ids": ['1:', '2:', '3'],
     "items": [
