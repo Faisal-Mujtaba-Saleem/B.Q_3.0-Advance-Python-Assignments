@@ -6,6 +6,10 @@ import json
 
 # Create your views here.
 
+
+''' ------ CODE STARTS HERE ----- '''
+
+
 @csrf_exempt
 def split_evenly(request):
     try:
@@ -390,3 +394,6 @@ def split_with_shared_items(request):
         print(f"An error occurred:", e)
         # return error with status code 500
         return JsonResponse({'error': f'An error occurred: {e}'}, status=500)
+
+
+''' ------ END OF CODE ----- '''
