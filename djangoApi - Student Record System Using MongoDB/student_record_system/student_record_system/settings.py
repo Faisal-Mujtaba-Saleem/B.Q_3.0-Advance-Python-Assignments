@@ -10,8 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
-from pathlib import Path
 from mongoengine import connect
+from pathlib import Path
+from dotenv import load_dotenv
+import os
+
+
+load_dotenv()
 
 
 connect(
@@ -92,8 +97,8 @@ DATABASES = {
         'CLIENT': {
             'host': 'localhost',  # Change this if you're using a remote MongoDB instance
             'port': 27017,
-            'username': 'Faisal-Mujtaba-Saleem',       # If no username, leave empty
-            'password': '7@!$AL_A|)miN',       # If no password, leave empty
+            'username': os.getenv('DB_USERNAME'),
+            'password': os.getenv('DB_PASSWORD'),
             'authSource': 'admin',
             'authMechanism': 'SCRAM-SHA-1',
         }
