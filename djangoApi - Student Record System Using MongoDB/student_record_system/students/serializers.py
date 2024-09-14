@@ -1,8 +1,9 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework_mongoengine.serializers import DocumentSerializer
 from .models import Student
 
 
-class StudentSerializer(ModelSerializer):
+class StudentSerializer(DocumentSerializer):
     class Meta:
         model = Student
+        managed = False
         fields = '__all__'  # All fields will be serialized

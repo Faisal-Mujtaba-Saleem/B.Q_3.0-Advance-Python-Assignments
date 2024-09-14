@@ -20,9 +20,12 @@ load_dotenv()
 
 
 connect(
-    db='student_record_system',  # Name of your MongoDB database
-    host='localhost',  # Hostname, assuming local MongoDB
-    port=27017,        # MongoDB port
+    db='student_record_system',  # MongoDB database name
+    host='localhost',           # MongoDB host
+    port=27017,                 # MongoDB port
+    username=os.getenv('DB_USERNAME'),
+    password=os.getenv('DB_PASSWORD'),
+    authentication_source='admin',
 )
 
 
@@ -51,7 +54,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'students'
+    'students',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -89,20 +93,12 @@ WSGI_APPLICATION = 'student_record_system.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'djongo',
-        # Make sure this matches the error's key: 'student_records_db'
-        'NAME': 'student_records_db',
-        'CLIENT': {
-            'host': 'localhost',  # Change this if you're using a remote MongoDB instance
-            'port': 27017,
-            'username': os.getenv('DB_USERNAME'),
-            'password': os.getenv('DB_PASSWORD'),
-            'authSource': 'admin',
-            'authMechanism': 'SCRAM-SHA-1',
-        }
-    }
+DATABASES = {}
+
+
+# Disable migrations for the 'students' app as MongoEngine does not use Django's migration system
+MIGRATION_MODULES = {
+    'students': None,
 }
 
 
